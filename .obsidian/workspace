@@ -1,0 +1,139 @@
+{
+  "main": {
+    "id": "e54c28079ae3a5b1",
+    "type": "split",
+    "children": [
+      {
+        "id": "42f651d8d7d6764e",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "习概/9.16.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6d9c5c7d9c19ec9d",
+    "type": "split",
+    "children": [
+      {
+        "id": "1cc1bd8195db5c9d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d80c2d3408846d45",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "cce0cb5ce998b4ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a301fb258a099922",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a5292f3ab2de0f77",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ab21b753ddb04e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aa3a81df186db7bf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "习概/9.16.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8b33151fa136aa61",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "习概/9.16.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "156fb8d53ed313d1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "66e4da58f4bd1c6c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "习概/9.16.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "42f651d8d7d6764e",
+  "lastOpenFiles": [
+    "汇编/FjrIV9Vr0WnW6v0FwizR97479W3e.png",
+    "汇编/Intel汇编语言程序设计 ((美) 欧文著  温玉杰等译, Irvine, K.R.) (z-lib.org).pdf",
+    "汇编/FiUPlHupq_MkvynVjdhuyIoXW8Yj.png",
+    "汇编/加密与解密（第4版） (段钢) (z-lib.org).pdf",
+    "汇编/9.16.md"
+  ]
+}
