@@ -1,0 +1,237 @@
+<!-- ZZZAQ 10.17 for homework -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--==================== icons ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!--==================== css ====================-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!--==================== page icon =====================-->
+    <link rel="shortcut icon" href="assets/img/bird.ico">
+
+    <title>Angie's Home Page</title>
+</head>
+
+<body>
+    <!--==================== NAVIGATE ====================-->
+    <header class="header" id="header">
+        <nav class="nav container grid">
+            <a href="#" class="nav__logo">Angie's Blog</a>
+
+            <form action="index.html#" class="query__form grid">
+                <div class="query__content">
+                    <input type="text" class="query__input">
+                </div>
+            </form>
+        </nav>
+    </header>
+    <!--==================== MAIN ====================-->
+    <!-- main part of this page -->
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__content grid">
+                    <!-- links to social accounts -->
+                    <div class="home__social">
+                        <a href="https://github.com" class="home__social-icon">
+                            <i class="uil uil-github-alt"></i>
+                        </a>
+                        <a href="https://codeforces.com/profile/luckyzzzaq" class="home__social-icon">
+                            <i class="uil uil-graph-bar"></i>
+                        </a>
+                        <a href="https://leetcode.cn/u/hao-hao-xue-xi-qi-an-zhou" class="home__social-icon">
+                            <i class="uil uil-laughing"></i>
+                        </a>
+                    </div>
+
+                    <!-- my cat img profile -->
+                    <div class="home__img">
+                        <svg id="graph" width="100%" height="400px">
+                            <defs>
+                                <pattern id="image" x="0%" y="0%" height="100%" width="100%" viewBox="0 0 512 512">
+                                    <image x="0%" y="0%" width="530" height="530" xlink:href="assets/img/perfil.png">
+                                    </image>
+                                </pattern>
+                            </defs>
+                            <!-- circle -->
+                            <circle id="sd" cx="50%" cy="47%" r="42%" fill="url(#image)" stroke="black"
+                                stroke-width="0.1%" />
+                        </svg>
+                    </div>
+
+                    <!-- texts -->
+                    <div class="home__data">
+                        <h1 class="home__title">Angie's Blog</h1>
+                        <h3 class="home__subtitle">Computer Science student</h3>
+                        <p class="home__description">Junior student from Nankai University, China. Ready and willing to
+                            learn new skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== RECNET ====================-->
+        <section class="recent section" id="recent">
+            <h2 class="section__title">Recent Works</h2>
+
+            <div class="recent__container container">
+                <div class="recent__content grid">
+                    <img src="assets/img/recent1.jpg" alt="" class="recent__img">
+
+                    <div class="recent__data">
+                        <h3 class="recent__title">The WARS</h3>
+                        <p class="recent__description">an interesting game(not completed yet)</p>
+
+                        <a href="" class="button button--flex button--small">
+                            repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== EXPERIENCE ====================-->
+        <section class="experience section" id="experience">
+            <h2 class="section__title">Experience</h2>
+
+            <div class="experience__container container">
+                <div class="experience__sections">
+                    <!--==================== EXPERIENCE 1====================-->
+                    <div class="experience__data">
+                        <div>
+                            <h3 class="experience__title">High school</h3>
+                            <span class="experience__subtitle">Jiangsu Province</span>
+                            <div class="experience__calender">
+                                <i class="uil uil-calendar-alt"></i>
+                                2016 - 2019
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="experience__rounder"></span>
+                            <span class="experience__line"></span>
+                        </div>
+
+                        <div></div>
+                    </div>
+                    <!--==================== EXPERIENCE 2====================-->
+                    <div class="experience__data">
+                        <div></div>
+
+                        <div>
+                            <span class="experience__rounder"></span>
+                            <span class="experience__line"></span>
+                        </div>
+
+                        <div>
+                            <h3 class="experience__title">Computer Science</h3>
+                            <span class="experience__subtitle">Nankai University</span>
+                            <div class="experience__calender">
+                                <i class="uil uil-calendar-alt"></i>
+                                2019 -
+                            </div>
+                        </div>
+                    </div>
+                    <!--==================== EXPERIENCE 3====================-->
+                    <div class="experience__data">
+                        <div>
+                            <h3 class="experience__title">Backend Development</h3>
+                            <span class="experience__subtitle">Go language</span>
+                            <div class="experience__calender">
+                                <i class="uil uil-calendar-alt"></i>
+                                2022 -
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="experience__rounder"></span>
+                        </div>
+
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== MOVIES ====================-->
+        <section class="movies section" id="movies">
+            <h2 class="section__title">Favorite Movies</h2>
+
+            <div class='typora-export-content'>
+                <div id='write' class=''>
+                    <figure>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><span>Name</span></th>
+                                    <th><span>Director</span></th>
+                                    <th><span>Actors</span></th>
+                                    <th><span>Year</span></th>
+                                    <th><span>Rank</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>Atonement</span></td>
+                                    <td><span>Joe Wright</span></td>
+                                    <td><span>James McAvoy, Saoirse Ronan</span></td>
+                                    <td><span>2007</span></td>
+                                    <td><span>1</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>Pride &amp; Prejudice</span></td>
+                                    <td><span>Joe Wright</span></td>
+                                    <td><span>Keira Knightley, Matthew Macfadyen</span></td>
+                                    <td><span>2005</span></td>
+                                    <td><span>2</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>Fleabag</span></td>
+                                    <td><span>Harry Bradbeer</span></td>
+                                    <td><span>Phoebe Waller-Bridge</span></td>
+                                    <td><span>2016</span></td>
+                                    <td><span>3</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </figure>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--==================== FOOTER ====================-->
+    <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <div>
+                    <h1 class="footer__title">Angie</h1>
+                    <span class="footer__subtitle">CS student</span>
+                </div>
+
+                <div></div>
+
+                <div class="footer__socials">
+                    <a href="https://github.com" class="footer__social">
+                        <i class="uil uil-github-alt"></i>
+                    </a>
+                    <a href="https://codeforces.com/profile/luckyzzzaq" class="footer__social">
+                        <i class="uil uil-graph-bar"></i>
+                    </a>
+                    <a href="https://leetcode.cn/u/hao-hao-xue-xi-qi-an-zhou/" class="footer__social">
+                        <i class="uil uil-laughing"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
