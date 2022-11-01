@@ -74,6 +74,7 @@ FUNCEND:        ; meet '\0'
 string2dws ENDP
 ; ========================= string2dws ============================
 
+
 ; ========================= dws2string ============================
 dws2string PROC
 
@@ -84,6 +85,11 @@ dws2string PROC
 LOOPNUMBER:
     ; this number
 	mov eax,[numbers+ecx]
+    mov [tmp_buf],32
+    mov [tmp_buf+1],32
+    mov [tmp_buf+2],32
+    mov [tmp_buf+3],32
+    mov edi,0       ; index for tmp_buf
 ; one number begin =======================================
 LOOPCHAR:
 	; eax /= 10, dx = eax % 10
@@ -93,13 +99,37 @@ LOOPCHAR:
 	add dx,48 	; 1 -> '1'(49)
 
 	; dl means lower 8 bits of dx
-	mov BYTE PTR output_buf[esi], dl
-    inc esi
+	mov BYTE PTR tmp_buf[edi], dl
+    inc edi
 
     cmp eax,0
 	jnz LOOPCHAR
 
 ; one number end =======================================
+    ; this number end, copy tmp_buf to output_buf
+    ; if this is ' '/32, don't copy
+    mov al,[tmp_buf+3]
+    cmp al,32
+    jz L1
+	mov BYTE PTR output_buf[esi], al
+    inc esi
+L1:
+    mov al,[tmp_buf+2]
+    cmp al,32
+    jz L2
+	mov BYTE PTR output_buf[esi], al
+    inc esi
+L2:
+    mov al,[tmp_buf+1]
+    cmp al,32
+    jz L3
+	mov BYTE PTR output_buf[esi], al
+    inc esi
+L3:
+    mov al,[tmp_buf]
+	mov BYTE PTR output_buf[esi], al
+    inc esi
+
     ; this number end, add a ' '
     mov dl,32
 	mov BYTE PTR output_buf[esi], dl
@@ -116,6 +146,7 @@ LOOPCHAR:
 	ret
 dws2string ENDP
 ; ========================= dws2string ============================
+
 
 ; ========================= main ============================
 main PROC
