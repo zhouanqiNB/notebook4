@@ -21,7 +21,7 @@ tmp_buf BYTE 50 DUP(32)
 .code
 
 ; use former code to convert char[] to int
-;========================= string2dws ============================
+; ========================= string2dws ============================
 string2dws PROC
 	mov eax,0
 	mov ebx,0
@@ -72,9 +72,9 @@ FUNCEND:        ; meet '\0'
     ret
 
 string2dws ENDP
-;========================= string2dws ============================
+; ========================= string2dws ============================
 
-;========================= dws2string ============================
+; ========================= dws2string ============================
 dws2string PROC
 
     mov ecx,0  ; as index of numbers
@@ -115,9 +115,9 @@ LOOPCHAR:
     mov BYTE PTR output_buf[esi], dl
 	ret
 dws2string ENDP
-;========================= dws2string ============================
+; ========================= dws2string ============================
 
-;========================= main ============================
+; ========================= main ============================
 main PROC
 
 	invoke StdOut, addr str_tip			; get input
@@ -180,6 +180,6 @@ LLESS:
 	invoke ExitProcess, 0
 
 main ENDP
-;========================= main ============================
+; ========================= main ============================
 
 END main
