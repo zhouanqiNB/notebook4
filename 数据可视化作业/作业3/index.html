@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Show Charts</title>
+    <!-- Import ECharts -->
+    <script src="echarts.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+        .topic {
+            margin: auto;
+        }
+
+        .graph {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- first topic, weather -->
+    <div class="topic">
+        <h1 align="center">常熟近一周天气情况</h1>
+        <div class="graph" id="weather" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('weather'));
+
+            // data array to be filled
+            var date = [];
+            var lowestDegree = [];
+            var highestDegree = [];
+
+            // did not find a way to read file, so copied here
+            var file = `日期,最高温,最低温\n10.26,15,14\n10.27,19,12\n10.28,19,12\n10.29,19,10\n10.30,20,13\n10.31,22,15\n11.01,20,8`;
+            var lines = file.split("\n")
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                var lineData = line.split(",");
+                date.push(lineData[0]);
+                lowestDegree.push(lineData[2] - 0);
+                highestDegree.push(lineData[1] - lineData[2]);
+            }
+
+            // see data in console
+            // console.log(date);
+            // console.log(lowestDegree);
+            // console.log(highestDegree);
+
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        // Use axis to trigger tooltip
+                        type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+                    }
+                },
+                xAxis: {
+                    data: date
+                },
+                yAxis: {},
+                series: [
+                    {
+                        data: lowestDegree,
+                        type: 'line',
+                        stack: 'x'
+                    },
+                    {
+                        data: highestDegree,
+                        type: 'line',
+                        stack: 'x'
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        </script>
+    </div>
+
+    <!-- second topic, grape -->
+    <div class="topic">
+        <h1 align="center">愤怒的葡萄章节页数分布</h1>
+        <div class="graph" id="grape1" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('grape1'));
+
+            // data array to be filled
+            var id2Value = [];
+
+            // did not find a way to read file, so copied here
+            var file = `章节,开始页数,页数\n1,114,43\n2,157,128\n3,285,30\n4,315,217\n5,532,134\n6,666,333\n7,999,83\n8,1082,304\n9,1386,57\n10,1443,395\n11,1838,29\n12,1867,75\n13,1942,427\n14,2369,40\n15,2409,173\n16,2582,477\n17,3059,108\n18,3167,451\n19,3618,138\n20,3756,646\n21,4402,34\n22,4436,628\n23,5064,88\n24,5152,233\n25,5385,52\n26,5437,849\n27,6286,40\n28,6326,340\n29,6666,42\n30,6708,283`;
+
+            var lines = file.split("\n")
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                var lineData = line.split(",");
+                id2Value.push({ value: lineData[2] - 0, name: i - 0 });
+            }
+
+            // see data in console
+            // console.log(id2Value);
+
+            var option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '50%',
+                        data: id2Value,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+
+            myChart.setOption(option);
+        </script>
+
+        <div class="graph" id="grape2" style="width: 800px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('grape2'));
+
+            // data array to be filled
+            var chapterNumber = [];
+            var pageNumber = [];
+
+            // did not find a way to read file, so copied here
+            var file = `章节,开始页数,页数\n1,114,43\n2,157,128\n3,285,30\n4,315,217\n5,532,134\n6,666,333\n7,999,83\n8,1082,304\n9,1386,57\n10,1443,395\n11,1838,29\n12,1867,75\n13,1942,427\n14,2369,40\n15,2409,173\n16,2582,477\n17,3059,108\n18,3167,451\n19,3618,138\n20,3756,646\n21,4402,34\n22,4436,628\n23,5064,88\n24,5152,233\n25,5385,52\n26,5437,849\n27,6286,40\n28,6326,340\n29,6666,42\n30,6708,283`;
+
+            var lines = file.split("\n")
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                var lineData = line.split(",");
+                chapterNumber.push(i);
+                pageNumber.push(lineData[2]);
+            }
+
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        // Use axis to trigger tooltip
+                        type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+                    }
+                },
+                xAxis: {
+                    data: chapterNumber
+                },
+                yAxis: {},
+                series: [
+                    {
+                        type: 'bar',
+                        data: pageNumber
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        </script>
+    </div>
+
+    <!-- third topic, bill -->
+    <div class="topic">
+        <h1 align="center">十月每日开销图</h1>
+        <div class="graph" id="bill1" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('bill1'));
+
+            // data array to be filled
+            var tag2Money = { '奶茶': 0, '交通': 0, '喝的': 0, '吃的': 0, '购物': 0, '充会员': 0, '其它': 0, '生活': 0 };
+
+            // did not find a way to read file, so copied here
+            var file = `日期,金额,标签\n2022-10-31,13,奶茶\n2022-10-31,10.63,交通\n2022-10-30,15,喝的\n2022-10-30,18.50,吃的\n2022-10-30,14,吃的\n2022-10-29,10.48,购物\n2022-10-28,15,吃的\n2022-10-28,2,交通\n2022-10-28,15.20,奶茶\n2022-10-28,11.40,交通\n2022-10-27,13.90,吃的\n2022-10-27,2,交通\n2022-10-27,12.22,吃的\n2022-10-26,47,吃的\n2022-10-26,2,交通\n2022-10-26,4,交通\n2022-10-26,12.09,交通\n2022-10-25,6,购物\n2022-10-25,5.90,吃的\n2022-10-25,2,交通\n2022-10-25,11.24,交通\n2022-10-24,12,吃的\n2022-10-24,2,交通\n2022-10-24,10,充会员\n2022-10-24,11.24,交通\n2022-10-24,6.55,购物\n2022-10-23,69.90,购物\n2022-10-23,43,购物\n2022-10-23,99,购物\n2022-10-23,88.90,购物\n2022-10-23,184.79,购物\n2022-10-23,19,吃的\n2022-10-23,8.20,吃的\n2022-10-23,10,吃的\n2022-10-23,50,生活\n2022-10-22,11.50,购物\n2022-10-22,32.50,购物\n2022-10-22,14,交通\n2022-10-22,13,奶茶\n2022-10-22,14,交通\n2022-10-22,3,其它\n2022-10-22,2.50,吃的\n2022-10-22,16,吃的\n2022-10-21,6,吃的\n2022-10-21,12.09,交通\n2022-10-21,16.60,吃的\n2022-10-20,17.50,喝的\n2022-10-20,6,吃的\n2022-10-20,15,吃的\n2022-10-20,25,吃的\n2022-10-20,6,吃的\n2022-10-20,12.09,交通\n2022-10-19,40.90,购物\n2022-10-19,2,交通\n2022-10-19,22.40,奶茶\n2022-10-19,12.09,交通\n2022-10-19,7.03,吃的\n2022-10-18,15,吃的\n2022-10-18,2,交通\n2022-10-18,8.22,吃的\n2022-10-18,6.22,交通\n2022-10-18,7,吃的\n2022-10-17,15,购物\n2022-10-17,14,吃的\n2022-10-17,25,吃的\n2022-10-16,90,购物\n2022-10-16,52.20,吃的\n2022-10-15,25,购物\n2022-10-15,6,吃的\n2022-10-15,15,吃的\n2022-10-15,202,购物\n2022-10-15,22.38,吃的\n2022-10-14,40,购物\n2022-10-14,18,其它\n2022-10-14,20.60,奶茶\n2022-10-14,12.09,交通\n2022-10-14,6,吃的\n2022-10-14,9,吃的\n2022-10-13,11,吃的\n2022-10-13,69,购物\n2022-10-13,20.69,吃的\n2022-10-13,5.50,吃的\n2022-10-12,21,吃的\n2022-10-12,2,交通\n2022-10-12,11.98,交通\n2022-10-12,7,吃的\n2022-10-12,6,吃的\n2022-10-11,70,其它\n2022-10-02,3.60,交通\n2022-10-11,8,交通\n2022-10-11,11.44,奶茶\n2022-10-11,6,吃的\n2022-10-11,3,吃的\n2022-10-11,9.75,交通\n2022-10-11,13,吃的\n2022-10-11,6,吃的\n2022-10-11,5.74,交通\n2022-10-10,15,吃的\n2022-10-10,8,吃的\n2022-10-10,2,交通\n2022-10-10,13,吃的\n2022-10-09,20,吃的\n2022-10-09,2,交通\n2022-10-09,15.88,吃的\n2022-10-09,7,吃的\n2022-10-09,12.24,交通\n2022-10-08,2,交通\n2022-10-08,20,购物\n2022-10-08,44,吃的\n2022-10-08,85,购物\n2022-10-08,12,交通\n2022-10-08,23.02,吃的\n2022-10-08,12.24,交通\n2022-10-08,7,吃的\n2022-10-07,3,吃的\n2022-10-07,11,吃的\n2022-10-07,58.40,喝的\n2022-10-07,24,喝的\n2022-10-07,18.40,吃的\n2022-10-06,5,喝的\n2022-10-06,31,吃的\n2022-10-06,23.40,奶茶\n2022-10-06,19.37,吃的\n2022-10-05,5,喝的\n2022-10-05,23.01,吃的\n2022-10-05,20,其它\n2022-10-05,20.10,吃的\n2022-10-04,5,购物\n2022-10-04,15,吃的\n2022-10-04,21.38,吃的\n2022-10-04,27,吃的\n2022-10-03,27.20,吃的\n2022-10-03,20.99,吃的\n2022-10-03,15,吃的\n2022-10-02,12.49,购物\n2022-10-02,18,吃的\n2022-10-02,11.32,交通\n2022-10-02,25,生活\n2022-10-02,13,奶茶\n2022-10-02,36,交通\n2022-10-02,5.50,吃的\n2022-10-01,10,吃的\n2022-10-01,10,喝的\n2022-10-01,16,奶茶\n2022-10-01,3.60,交通\n2022-10-01,8,交通\n2022-10-01,7,吃的\n2022-10-01,10,吃的\n2022-10-01,21,吃的\n2022-10-01,5,吃的\n2022-10-01,36,交通`;
+
+            var lines = file.split("\n")
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                var lineData = line.split(",");
+                tag2Money[lineData[2]] += lineData[1] - 0;
+            }
+
+            var tag2Value = [];
+            for (var key in tag2Money) {
+                tag2Value.push({ value: tag2Money[key].toFixed(2) - 0, name: key })
+            }
+
+            // see data in console
+            // console.log(tag2Value);
+
+            var option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '50%',
+                        data: tag2Value,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+
+            myChart.setOption(option);
+        </script>
+
+        <div class="graph" id="bill2" style="width: 800px;height:450px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('bill2'));
+
+            // data array to be filled
+            var tag2Date2Money = {};
+            var dateCounter = {};
+
+            // did not find a way to read file, so copied here
+            var file = `日期,金额,标签\n2022-10-31,13,奶茶\n2022-10-31,10.63,交通\n2022-10-30,15,喝的\n2022-10-30,18.50,吃的\n2022-10-30,14,吃的\n2022-10-29,10.48,购物\n2022-10-28,15,吃的\n2022-10-28,2,交通\n2022-10-28,15.20,奶茶\n2022-10-28,11.40,交通\n2022-10-27,13.90,吃的\n2022-10-27,2,交通\n2022-10-27,12.22,吃的\n2022-10-26,47,吃的\n2022-10-26,2,交通\n2022-10-26,4,交通\n2022-10-26,12.09,交通\n2022-10-25,6,购物\n2022-10-25,5.90,吃的\n2022-10-25,2,交通\n2022-10-25,11.24,交通\n2022-10-24,12,吃的\n2022-10-24,2,交通\n2022-10-24,10,充会员\n2022-10-24,11.24,交通\n2022-10-24,6.55,购物\n2022-10-23,69.90,购物\n2022-10-23,43,购物\n2022-10-23,19,吃的\n2022-10-23,8.20,吃的\n2022-10-23,10,吃的\n2022-10-23,50,生活\n2022-10-22,11.50,购物\n2022-10-22,32.50,购物\n2022-10-22,14,交通\n2022-10-22,13,奶茶\n2022-10-22,14,交通\n2022-10-22,3,其它\n2022-10-22,2.50,吃的\n2022-10-22,16,吃的\n2022-10-21,6,吃的\n2022-10-21,12.09,交通\n2022-10-21,16.60,吃的\n2022-10-20,17.50,喝的\n2022-10-20,6,吃的\n2022-10-20,15,吃的\n2022-10-20,25,吃的\n2022-10-20,6,吃的\n2022-10-20,12.09,交通\n2022-10-19,40.90,购物\n2022-10-19,2,交通\n2022-10-19,22.40,奶茶\n2022-10-19,12.09,交通\n2022-10-19,7.03,吃的\n2022-10-18,15,吃的\n2022-10-18,2,交通\n2022-10-18,8.22,吃的\n2022-10-18,6.22,交通\n2022-10-18,7,吃的\n2022-10-17,15,购物\n2022-10-17,14,吃的\n2022-10-17,25,吃的\n2022-10-16,90,购物\n2022-10-16,52.20,吃的\n2022-10-15,25,购物\n2022-10-15,6,吃的\n2022-10-15,15,吃的\n2022-10-15,202,购物\n2022-10-15,22.38,吃的\n2022-10-14,40,购物\n2022-10-14,18,其它\n2022-10-14,20.60,奶茶\n2022-10-14,12.09,交通\n2022-10-14,6,吃的\n2022-10-14,9,吃的\n2022-10-13,11,吃的\n2022-10-13,69,购物\n2022-10-13,20.69,吃的\n2022-10-13,5.50,吃的\n2022-10-12,21,吃的\n2022-10-12,2,交通\n2022-10-12,11.98,交通\n2022-10-12,7,吃的\n2022-10-12,6,吃的\n2022-10-11,70,其它\n2022-10-02,3.60,交通\n2022-10-11,8,交通\n2022-10-11,11.44,奶茶\n2022-10-11,6,吃的\n2022-10-11,3,吃的\n2022-10-11,9.75,交通\n2022-10-11,13,吃的\n2022-10-11,6,吃的\n2022-10-11,5.74,交通\n2022-10-10,15,吃的\n2022-10-10,8,吃的\n2022-10-10,2,交通\n2022-10-10,13,吃的\n2022-10-09,20,吃的\n2022-10-09,2,交通\n2022-10-09,15.88,吃的\n2022-10-09,7,吃的\n2022-10-09,12.24,交通\n2022-10-08,2,交通\n2022-10-08,20,购物\n2022-10-08,44,吃的\n2022-10-08,85,购物\n2022-10-08,12,交通\n2022-10-08,23.02,吃的\n2022-10-08,12.24,交通\n2022-10-08,7,吃的\n2022-10-07,3,吃的\n2022-10-07,11,吃的\n2022-10-07,58.40,喝的\n2022-10-07,24,喝的\n2022-10-07,18.40,吃的\n2022-10-06,5,喝的\n2022-10-06,31,吃的\n2022-10-06,23.40,奶茶\n2022-10-06,19.37,吃的\n2022-10-05,5,喝的\n2022-10-05,23.01,吃的\n2022-10-05,20,其它\n2022-10-05,20.10,吃的\n2022-10-04,5,购物\n2022-10-04,15,吃的\n2022-10-04,21.38,吃的\n2022-10-04,27,吃的\n2022-10-03,27.20,吃的\n2022-10-03,20.99,吃的\n2022-10-03,15,吃的\n2022-10-02,12.49,购物\n2022-10-02,18,吃的\n2022-10-02,11.32,交通\n2022-10-02,25,生活\n2022-10-02,13,奶茶\n2022-10-02,36,交通\n2022-10-02,5.50,吃的\n2022-10-01,10,吃的\n2022-10-01,10,喝的\n2022-10-01,16,奶茶\n2022-10-01,3.60,交通\n2022-10-01,8,交通\n2022-10-01,7,吃的\n2022-10-01,10,吃的\n2022-10-01,21,吃的\n2022-10-01,5,吃的\n2022-10-01,36,交通`;
+
+            /*
+            tag2Date2Money, I want it be like this:
+            {
+                '奶茶':{
+                    '2022-10-31':13,
+                    '2022-10-30':12,
+                },
+                '交通':{
+                    '2022-10-31':13,
+                    '2022-10-30':12,
+                }
+            }
+            */
+
+            var lines = file.split("\n")
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                var lineData = line.split(",");
+
+                // tag->date->money
+                if (tag2Date2Money.hasOwnProperty(lineData[2])) {
+                    if (tag2Date2Money[lineData[2]].hasOwnProperty(lineData[0])) {
+                        tag2Date2Money[lineData[2]][lineData[0]] += lineData[1] - 0;
+                    } else {
+                        tag2Date2Money[lineData[2]][lineData[0]] = lineData[1] - 0;
+                    }
+                } else {
+                    tag2Date2Money[lineData[2]] = {};
+                    tag2Date2Money[lineData[2]][lineData[0]] = lineData[1] - 0;
+                }
+
+                // date set
+                if (dateCounter.hasOwnProperty(lineData[0])) {
+                    dateCounter[lineData[0]]++;
+                } else {
+                    dateCounter[lineData[0]] = 0;
+                }
+            }
+            // console.log(tag2Date2Money);
+
+            var dates = [];
+            for (var key in dateCounter) {
+                dates.push(key);
+            }
+            dates.sort();
+            // console.log(dates);
+
+            var seriesData = [];
+            for (var tag in tag2Date2Money) {
+                var tmp = [];
+                dates.forEach(date => {
+                    if (tag2Date2Money[tag].hasOwnProperty(date)) {
+                        tmp.push(tag2Date2Money[tag][date].toFixed(2) - 0);
+                    } else {
+                        tmp.push(0);
+                    }
+                });
+                tmptmp = {
+                    name: tag,
+                    type: 'bar',
+                    stack: 'total',
+                    label: {
+                        show: false
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: tmp
+                }
+                seriesData.push(tmptmp);
+            }
+            // console.log(seriesData);
+
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        // Use axis to trigger tooltip
+                        type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+                    }
+                },
+                legend: {},
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: dates,
+                    axisLabel: { interval: 0, rotate: 30 }
+                },
+                series: seriesData
+            };
+
+            myChart.setOption(option);
+        </script>
+    </div>
+
+</body>
+
+</html>
