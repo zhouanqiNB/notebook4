@@ -1,19 +1,3 @@
-# 汇编语言与逆向技术实验报告
-
-# Lab4 - previewer
-
-<center><b>学号：</b>1911590   <b>姓名：</b>周安琪 <b>专业：</b>计算机科学与技术</center>
-
-## 实验内容
-
-1. 熟悉PE文件结构；
-2. 使用Windows API函数读取文件内容
-
-## 实验步骤
-
-### 源码
-
-```assembly
 ; ZZZAQ 11.8
 
 .386
@@ -78,13 +62,13 @@ main PROC
     
     invoke StdOut, addr idh1
     mov ecx,DWORD PTR [file_content]
-    invoke dw2hex,ecx,addr [hex_buf]     ; convert file into hex
+    invoke dw2hex,ecx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf+4]
     invoke StdOut, addr endl
     
     invoke StdOut, addr idh2
     mov ecx,DWORD PTR [file_content+3ch]
-    invoke dw2hex,ecx,addr [hex_buf]     ; convert file into hex
+    invoke dw2hex,ecx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -94,7 +78,7 @@ main PROC
     invoke StdOut, addr inh1
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]      ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -105,7 +89,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,6h
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]    ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf+4]
     invoke StdOut, addr endl
 
@@ -113,7 +97,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,8h
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]    ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -121,7 +105,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,16h
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]    ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf+4]
     invoke StdOut, addr endl
 
@@ -132,7 +116,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,28h
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]      ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -140,7 +124,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,34h
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]      ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -148,7 +132,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,38h
     mov ecx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ecx,addr [hex_buf]     ; convert file into hex
+    invoke dw2hex,ecx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -156,7 +140,7 @@ main PROC
     mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
     add ecx,3ch
     mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]     ; convert file into hex
+    invoke dw2hex,ebx,addr [hex_buf]                 ; convert file into hex
     invoke StdOut, addr [hex_buf]
     invoke StdOut, addr endl
 
@@ -169,84 +153,3 @@ main ENDP
 ; ========================= main ============================
 
 END main
-```
-
-### 打开文件和读入文件
-
-首先输入文件名，然后根据文件名调用`CreateFile`函数得到文件地址。
-
-调用`SetFilePointer`把指针设置到文件开头。
-
-调用`ReadFile`把文件（二进制格式）读到`file_content`中。
-
-```assembly
-	invoke StdIn, addr input_buf, 50
-
-    invoke CreateFile,  addr input_buf,\
-                        GENERIC_READ,\
-                        FILE_SHARE_READ,\
-                        0,\
-                        OPEN_EXISTING,\
-                        FILE_ATTRIBUTE_ARCHIVE,\
-                        0
-    mov hfile,eax ; return value is stored in `ecx`
-
-    invoke SetFilePointer,hfile,0,0,FILE_BEGIN  ; hfile points to the beginning of <>
-    invoke ReadFile,hfile,addr file_content,4000,0,0    ; read file into file_content
-```
-
-### 把文件内容转化为ASCII码便于以hex输出
-
-这一段的意思是从`file_content`读一个`DWORD`到`ecx`寄存器中，将其转化为hex字符串并且输出后一个`WORD`。
-
-```assembly
-    mov ecx,DWORD PTR [file_content]
-    invoke dw2hex,ecx,addr [hex_buf]     ; convert file into hex
-    invoke StdOut, addr [hex_buf+4]
-```
-
-### 得到偏移
-
-每个字段的偏移数目可以查表。
-
-下面是读取PE头的操作。
-
-这一段的意思是先从DOS头中拿到PE的起始地址，然后加上该字段的偏移数目6，即可以拿到该字段的数据。
-
-```assembly
-    mov ecx,DWORD PTR [file_content+3ch]    ; ecx=PE_begin_offset
-    add ecx,6h
-    mov ebx,DWORD PTR [file_content+ecx]
-    invoke dw2hex,ebx,addr [hex_buf]      ; convert file into hex
-    invoke StdOut, addr [hex_buf+4]
-```
-
-### 编译和链接
-
-```bash
-\masm32\bin\ml /c /Zd /coff previewer.asm
-\masm32\bin\link /SUBSYSTEM:CONSOLE previewer.obj
-previewer.exe
-```
-
-## 设计说明
-
-````mermaid
-graph TB
-	start(开始)-->openFile[打开文件]
-	openFile-->readFile[读入文件二进制内容]
-	readFile-->readDOS[读DOS头]
-	readDOS-->readPEBegin[读DOS头中保存的PE表的起始地址]
-	readPEBegin-->readPEField[加偏移读PE表中的字段]
-	readPEField[加偏移读PE表中的字段]-->convertASCII[把内存中的二进制数据转化为hex字符串方便输出]-->output[输出]
-	output-->en(结束)
-````
-
-## 实验截图
-
-![image-20221108161413792](C:/Users/16834/Desktop/notebook4/%E6%B1%87%E7%BC%96%E4%BD%9C%E4%B8%9A/%E5%AE%9E%E9%AA%8C4/image-20221108161413792.png)
-
-## 实验心得
-
-通过这次实验，更理解了PE文件的结构，提高了汇编编程能力。
-
