@@ -56,7 +56,7 @@ python3 -m http.server 8044
 
 # 结果
 
-![image-20221101150931764](C:/Users/16834/Desktop/notebook4/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BD%9C%E4%B8%9A/%E4%BD%9C%E4%B8%9A3/image-20221101150931764.png)
+![image-20221101150931764](image-20221101150931764.png)
 
 # 感想
 
